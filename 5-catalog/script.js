@@ -17,7 +17,7 @@ const grid = document.getElementById("grid");
 const countEl = document.getElementById("count");
 
 function getFiltered() {
-  let result = products;
+  let result = [...products];
   const search = searchInput.value.toLowerCase();
   const category = categorySelect.value;
   const sort = sortSelect.value;
@@ -36,7 +36,7 @@ function getFiltered() {
   } else if (sort === "desc") {
     result.sort((a, b) => b.price - a.price);
   }
-
+  
   return result;
 }
 

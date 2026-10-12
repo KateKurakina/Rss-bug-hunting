@@ -11,11 +11,16 @@ let currentFilter = "all";
 let nextId = 1;
 
 function addTask() {
-  const text = input.value;
-  errorEl.hidden = true;
-  tasks.push({ id: nextId++, text: text, done: false });
-  input.value = "";
-  render();
+  if (input.value.trim()) {
+    const text = input.value;
+    errorEl.hidden = true;
+    tasks.push({ id: nextId++, text: text, done: false });
+    input.value = "";
+    render();
+  } else {
+    errorEl.hidden = false;
+    input.value = "";
+  }
 }
 
 function toggleTask(id) {

@@ -78,6 +78,8 @@ function clearCart() {
 function renderCart() {
   cartItemsEl.innerHTML = "";
   let total = 0;
+  let totalQty = 0;
+  
   cart.forEach((item) => {
     const lineTotal = item.price;
     const li = document.createElement("li");
@@ -92,6 +94,7 @@ function renderCart() {
     li.querySelector('[data-act="dec"]').addEventListener("click", () => decreaseQty(item.id));
     li.querySelector(".remove").addEventListener("click", () => removeItem(item.id));
     cartItemsEl.appendChild(li);
+    totalQty += item.qty;
     total += item.price * item.qty;
   });
 
@@ -99,7 +102,7 @@ function renderCart() {
     total = total - total * discount;
   }
 
-  badgeEl.textContent = cart.length;
+  badgeEl.textContent = totalQty;
   totalEl.textContent = total;
   emptyMsg.hidden = true;
 }

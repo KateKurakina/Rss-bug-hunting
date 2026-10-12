@@ -32,11 +32,17 @@ function renderProducts() {
 
 function addToCart(id) {
   const product = products.find((p) => p.id === id);
+
   if (!product) {
     return;
   }
-  console.log(product.name);
-  cart.push({ id: product.id, name: product.name, price: product.price, qty: 1 });
+
+  const cartEl = cart.find((c) => c.id === id);
+  if (!cartEl) {
+    cart.push({ id: product.id, name: product.name, price: product.price, qty: 1 });
+  } else {
+    cartEl.qty++;
+  }
   renderCart();
 }
 

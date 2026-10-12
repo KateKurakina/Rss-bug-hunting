@@ -64,9 +64,10 @@ function removeItem(id) {
 }
 
 function applyPromo() {
-  if ((promoInput.value = "SALE10")) {
+  if ((promoInput.value === "SALE10")) {
     discount = 0.1;
-  }
+  } else discount = 0;
+  console.log(discount);
   renderCart();
 }
 
@@ -79,7 +80,7 @@ function renderCart() {
   cartItemsEl.innerHTML = "";
   let total = 0;
   let totalQty = 0;
-  
+
   cart.forEach((item) => {
     const lineTotal = item.price;
     const li = document.createElement("li");
@@ -100,7 +101,7 @@ function renderCart() {
 
   if (discount) {
     total = total - total * discount;
-  }
+  };
 
   badgeEl.textContent = totalQty;
   totalEl.textContent = total;
